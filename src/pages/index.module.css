@@ -8,8 +8,63 @@
   padding: 0 0.5rem;
 }
 
-.samplestyle{
-  width:30px;
-  height:30px;
-  background:url('~/src/assets/images/icons.png') no-repeat ;
+.samplestyle {
+  width: 30px;
+  height: 30px;
+  background: url('~/src/assets/images/icons.png') no-repeat;
+}
+
+.base {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 300px;
+  height: 390px;
+  background-color: aqua;
+}
+
+.topboard {
+  display: flex;
+  width: 270px;
+  height: 75px;
+  margin-top: 12px;
+  background-color: blue;
+  border: 3px solid black;
+}
+
+.timeboard {
+  display: flex;
+  width: 45px;
+  height: 45px;
+  margin-top: 12px;
+  margin-left: 12px;
+  background-color: azure;
+  border: 3px solid black;
+}
+
+.countboard {
+  display: flex;
+  width: 45px;
+  height: 45px;
+  margin-top: 12px;
+  margin-left: 12px;
+  background-color: rgb(25 67 104);
+  border: 3px solid black;
+}
+
+.emoboard {
+  display: flex;
+  width: 45px;
+  height: 45px;
+  margin-top: 12px;
+  background-color: aliceblue;
+  border: 3px solid black;
+}
+
+.board {
+  display: flex;
+  width: 270px;
+  height: 270px;
+  background-color: gray;
+  border: 3px solid black;
 }
