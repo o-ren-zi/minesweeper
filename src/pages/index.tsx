@@ -23,13 +23,17 @@ const Home = () => {
   console.log(samplePos);
   return (
     <div className={styles.container}>
+      <div className={styles.topboard}>
+        <div className={styles.countboard} />
+        <div className={styles.emoboard} />
+        <div className={styles.timeboard} />
+      </div>
       <div className={styles.base}>
-        <div className={styles.topboard}>
-          <div className={styles.timeboard} />
-          <div className={styles.emoboard} />
-          <div className={styles.countboard} />
+        <div className={styles.bombmap}>
+          {bombmap.map((row, y) =>
+            row.map((color, x) => <div className={styles.cellstyle} key={`${x}-${y}`} />),
+          )}
         </div>
-        <div className={styles.board} />
 
         {/* <div
           className={styles.samplestyle}

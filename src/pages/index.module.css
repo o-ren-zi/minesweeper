@@ -17,10 +17,9 @@
 .base {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  width: 300px;
-  height: 390px;
-  background-color: aqua;
+  width: 270px;
+  height: 270px;
+  background-color: rgb(240 92 24);
 }
 
 .topboard {
@@ -28,28 +27,28 @@
   width: 270px;
   height: 75px;
   margin-top: 12px;
-  background-color: blue;
-  border: 3px solid black;
-}
-
-.timeboard {
-  display: flex;
-  width: 45px;
-  height: 45px;
-  margin-top: 12px;
-  margin-left: 12px;
-  background-color: azure;
-  border: 3px solid black;
+  background-color: rgb(134 196 20);
+  border: 1px solid black;
 }
 
 .countboard {
   display: flex;
-  width: 45px;
+  width: 70px;
   height: 45px;
   margin-top: 12px;
-  margin-left: 12px;
-  background-color: rgb(25 67 104);
-  border: 3px solid black;
+  margin-left: 20px;
+  background-color: rgb(15 160 185);
+  border: 1px solid black;
+}
+
+.timeboard {
+  display: flex;
+  width: 70px;
+  height: 45px;
+  margin-top: 12px;
+  margin-left: 20px;
+  background-color: rgb(15 93 211);
+  border: 1px solid black;
 }
 
 .emoboard {
@@ -57,14 +56,24 @@
   width: 45px;
   height: 45px;
   margin-top: 12px;
-  background-color: aliceblue;
-  border: 3px solid black;
+  margin-left: 20px;
+  background-color: rgb(44 20 180);
+  border: 1px solid black;
 }
 
 .board {
   display: flex;
   width: 270px;
   height: 270px;
-  background-color: gray;
-  border: 3px solid black;
+  background-color: rgb(175 12 74);
+  border: 1px solid black;
+}
+
+.cellstyle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: black solid 1px;
 }
