@@ -14,12 +14,13 @@
   background: url('~/src/assets/images/icons.png') no-repeat;
 }
 
-.base {
+.board {
   display: flex;
   flex-wrap: wrap;
   width: 270px;
   height: 270px;
-  background-color: rgb(240 92 24);
+  background-color: rgb(170 167 167);
+  border: 1px solid black;
 }
 
 .topboard {
@@ -27,7 +28,7 @@
   width: 270px;
   height: 75px;
   margin-top: 12px;
-  background-color: rgb(134 196 20);
+  background-color: rgb(170 167 167);
   border: 1px solid black;
 }
 
@@ -37,7 +38,7 @@
   height: 45px;
   margin-top: 12px;
   margin-left: 20px;
-  background-color: rgb(15 160 185);
+  background-color: rgb(170 167 167);
   border: 1px solid black;
 }
 
@@ -47,7 +48,7 @@
   height: 45px;
   margin-top: 12px;
   margin-left: 20px;
-  background-color: rgb(15 93 211);
+  background-color: rgb(170 167 167);
   border: 1px solid black;
 }
 
@@ -57,15 +58,17 @@
   height: 45px;
   margin-top: 12px;
   margin-left: 20px;
-  background-color: rgb(44 20 180);
+  background-color: rgb(170 167 167);
   border: 1px solid black;
 }
 
-.board {
+.base {
   display: flex;
-  width: 270px;
-  height: 270px;
-  background-color: rgb(175 12 74);
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 300px;
+  height: 380px;
+  background-color: rgb(170 167 167);
   border: 1px solid black;
 }
 
