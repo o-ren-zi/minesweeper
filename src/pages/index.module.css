@@ -14,11 +14,12 @@
   background: url('~/src/assets/images/icons.png') no-repeat;
 }
 
-.board {
+.base {
   display: flex;
   flex-wrap: wrap;
-  width: 270px;
-  height: 270px;
+  justify-content: center;
+  width: 300px;
+  height: 380px;
   background-color: rgb(170 167 167);
   border: 1px solid black;
 }
@@ -62,14 +63,12 @@
   border: 1px solid black;
 }
 
-.base {
+.bombmap {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  width: 300px;
-  height: 380px;
+  width: 270px;
+  height: 270px;
   background-color: rgb(170 167 167);
-  border: 1px solid black;
 }
 
 .cellstyle {
@@ -80,3 +79,4 @@
   height: 30px;
   border: black solid 1px;
 }
+

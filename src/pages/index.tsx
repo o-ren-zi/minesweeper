@@ -1,5 +1,15 @@
 import { useState } from 'react';
 import styles from './index.module.css';
+const directions = [
+  [1, 1],
+  [1, 0],
+  [1, -1],
+  [0, -1],
+  [-1, -1],
+  [-1, 0],
+  [-1, 1],
+  [0, 1],
+];
 
 const Home = () => {
   const [samplePos, setSamplepos] = useState(0);
@@ -16,11 +26,16 @@ const Home = () => {
   ]);
 
   const [userInputs, setUserinputs] = useState([]);
-  const board: number[][] = [];
-  for (let y = 0; y < 9; y++) for (let x = 0; x < 9; x++) board.map;
+  const board: number[][] = structuredClone(bombmap);
+  for (let y = 0; y < 9; y++)
+    for (let x = 0; x < 9; x++) {
+      board[y][x] = 1;
+    }
   // 再起関数(ゼロ連鎖)
+  const x = Math.floor(Math.random() * 9);
+  const y = Math.floor(Math.random() * 9);
 
-  console.log(samplePos);
+  console.table(board);
   return (
     <div className={styles.container}>
       <div className={styles.base}>
@@ -29,22 +44,22 @@ const Home = () => {
           <div className={styles.emoboard} />
           <div className={styles.timeboard} />
         </div>
-        <div className={styles.board}>
-          <div className={styles.bombmap}>
-            {bombmap.map((row, y) =>
-              row.map((x) => <div className={styles.cellstyle} key={`${x}-${y}`} />),
-            )}
-          </div>
 
-          {/* <div
+        <div className={styles.bombmap}>
+          {board.map((row, y) =>
+            row.map((x, i) => <div className={styles.cellstyle} key={`${i}-${y}`} />),
+          )}
+        </div>
+
+        <div
             className={styles.samplestyle}
             style={{ backgroundPosition: `${-30 * samplePos}px 0px ` }}
-          /> */}
-          {/* <button onClick={() => setSamplepos((p) => (p + 1) % 14)}>sample</button> */}
-        </div>
+          />
+        <button onClick={() => setSamplepos((p) => (p + 1) % 14)}>sample</button>
       </div>
     </div>
   );
 };
 
 export default Home;
+// 1を表示できるようにする
