@@ -47,15 +47,21 @@ const Home = () => {
 
         <div className={styles.bombmap}>
           {board.map((row, y) =>
-            row.map((x, i) => <div className={styles.cellstyle} key={`${i}-${y}`} />),
+            row.map((x, i) => (
+              <div
+                className={styles.cellstyle}
+                key={`${i}-${y}`}
+                onClick={() => clickHander(x, y)}
+              />
+            )),
           )}
         </div>
 
         <div
-            className={styles.samplestyle}
-            style={{ backgroundPosition: `${-30 * samplePos}px 0px ` }}
-          />
-        <button onClick={() => setSamplepos((p) => (p + 1) % 14)}>sample</button>
+          className={styles.samplestyle}
+          style={{ backgroundPosition: `${-30 * samplePos}px 0px ` }}
+        />
+        <button onClick={() => setSamplepos(10)} />
       </div>
     </div>
   );
@@ -63,3 +69,4 @@ const Home = () => {
 
 export default Home;
 // 1を表示できるようにする
+<button onClick={() => setSamplepos((p) => (p + 1) % 14)}>sample</button>;
