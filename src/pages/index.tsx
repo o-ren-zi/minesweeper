@@ -13,7 +13,19 @@ const directions = [
 
 const Home = () => {
   const [samplePos, setSamplepos] = useState(0);
-  const [bombmap, setBombmap] = useState([
+  const [bombMap, setBombmap] = useState([
+    [, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  ]);
+
+  const [userInputs, setUserinputs] = useState([
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -25,17 +37,27 @@ const Home = () => {
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
   ]);
 
-  const [userInputs, setUserinputs] = useState([]);
-  const board: number[][] = structuredClone(bombmap);
-  for (let y = 0; y < 9; y++)
-    for (let x = 0; x < 9; x++) {
-      board[y][x] = 1;
+  const getRandom = (x: number, y: number) => {
+    for (let n = 0; n < 10; n++) {
+      const randomX = Math.floor(Math.random() * 9);
+      const randomY = Math.floor(Math.random() * 9);
+      console.log(randomX, randomY);
     }
-  // 再起関数(ゼロ連鎖)
-  const x = Math.floor(Math.random() * 9);
-  const y = Math.floor(Math.random() * 9);
+  };
 
-  console.table(board);
+  const clickHandler = (x: number, y: number) => {
+    console.log(x, y);
+    const newBombmap = structuredClone(bombMap);
+    getRandom(x, y);
+    const board: number[][] = structuredClone(userInputs);
+
+    board[y][x] = 1;
+    console.log(board);
+
+    setUserinputs(board);
+  };
+
+  // console.table(board);
   return (
     <div className={styles.container}>
       <div className={styles.base}>
@@ -44,24 +66,23 @@ const Home = () => {
           <div className={styles.emoboard} />
           <div className={styles.timeboard} />
         </div>
-
         <div className={styles.bombmap}>
-          {board.map((row, y) =>
+          {userInputs.map((row, y) =>
             row.map((x, i) => (
               <div
+                style={{ backgroundPosition: `${-30 * (x - 1)}px , 0px ` }}
                 className={styles.cellstyle}
                 key={`${i}-${y}`}
-                onClick={() => clickHander(x, y)}
+                onClick={() => clickHandler(i, y)}
               />
             )),
           )}
         </div>
-
-        <div
+        {/* <div
           className={styles.samplestyle}
-          style={{ backgroundPosition: `${-30 * samplePos}px 0px ` }}
-        />
-        <button onClick={() => setSamplepos(10)} />
+
+        /> */}
+        {/* <button onClick={() => setSamplepos(1)} /> */}
       </div>
     </div>
   );
@@ -69,4 +90,6 @@ const Home = () => {
 
 export default Home;
 // 1を表示できるようにする
-<button onClick={() => setSamplepos((p) => (p + 1) % 14)}>sample</button>;
+{
+  /* <button onClick={() => setSamplepos((p) => (p + 1) % 14)}>sample</button>; */
+}
