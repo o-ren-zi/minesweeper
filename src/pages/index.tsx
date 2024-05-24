@@ -68,7 +68,6 @@ const Home = () => {
     console.log(x, y);
     const newBombmap = structuredClone(bombMap);
 
-    console.log(getRandom);
     setUserInputs(getRandom);
 
     console.log(getRandom);
