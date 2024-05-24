@@ -14,18 +14,6 @@ const directions = [
 const Home = () => {
   const [samplePos, setSamplepos] = useState(0);
   const [bombMap, setBombmap] = useState([
-    [, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  ]);
-
-  const [userInputs, setUserinputs] = useState([
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -37,24 +25,53 @@ const Home = () => {
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
   ]);
 
-  const getRandom = (x: number, y: number) => {
+  const [userInputs, setUserInputs] = useState([
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  ]);
+
+  const [Bomb, setBomb] = useState([
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  ]);
+
+  const getRandom = () => {
+    const board: number[][] = structuredClone(userInputs);
+    const result = [];
+
     for (let n = 0; n < 10; n++) {
       const randomX = Math.floor(Math.random() * 9);
       const randomY = Math.floor(Math.random() * 9);
+      board[randomY][randomX] = 11;
+      result.push([randomY, randomX]);
       console.log(randomX, randomY);
+      console.log(Bomb);
     }
+    return board;
   };
 
   const clickHandler = (x: number, y: number) => {
     console.log(x, y);
     const newBombmap = structuredClone(bombMap);
-    getRandom(x, y);
-    const board: number[][] = structuredClone(userInputs);
 
-    board[y][x] = 1;
-    console.log(board);
+    console.log(getRandom);
+    setUserInputs(getRandom);
 
-    setUserinputs(board);
+    console.log(getRandom);
   };
 
   // console.table(board);
