@@ -49,25 +49,26 @@ const Home = () => {
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
   ]);
 
-  const getRandom = () => {
-    const board: number[][] = structuredClone(userInputs);
-    const result = [];
-
-    for (let n = 0; n < 10; n++) {
-      const randomX = Math.floor(Math.random() * 9);
-      const randomY = Math.floor(Math.random() * 9);
-      board[randomY][randomX] = 11;
-      result.push([randomY, randomX]);
-      console.log(randomX, randomY);
-      console.log(Bomb);
-    }
-    return board;
-  };
-
   const clickHandler = (x: number, y: number) => {
     console.log(x, y);
     const newBombmap = structuredClone(bombMap);
 
+    const getRandom = () => {
+      const board: number[][] = structuredClone(userInputs);
+
+      while (board.flat().filter((cell) => cell === 11).length < 10) {
+        //11の数が１０未満のとき
+        const randomX = Math.floor(Math.random() * 9);
+        const randomY = Math.floor(Math.random() * 9);
+
+        if (randomX !== x && randomY !== y) {
+          board[randomY][randomX] = 11;
+          console.log('set', randomX, randomY);
+        }
+        console.log(randomX, randomY);
+      }
+      return board;
+    };
     setUserInputs(getRandom);
 
     console.log(getRandom);
@@ -89,7 +90,7 @@ const Home = () => {
                 style={{ backgroundPosition: `${-30 * (x - 1)}px , 0px ` }}
                 className={styles.cellstyle}
                 key={`${i}-${y}`}
-                onClick={() => clickHandler(i, y)}
+                onClick={() => clickHandler(y, i)}
               />
             )),
           )}
