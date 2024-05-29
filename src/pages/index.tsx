@@ -37,7 +37,7 @@ const Home = () => {
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
   ]);
 
-  const [Bomb, setBomb] = useState([
+  const [number, setNumber] = useState([
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -50,7 +50,7 @@ const Home = () => {
   ]);
 
   const clickHandler = (x: number, y: number) => {
-    console.log(x, y);
+    //console.log(x, y);
     const newBombmap = structuredClone(bombMap);
 
     const getRandom = () => {
@@ -69,6 +69,7 @@ const Home = () => {
       }
       return board;
     };
+
     setUserInputs(getRandom);
 
     console.log(getRandom);
@@ -85,21 +86,25 @@ const Home = () => {
         </div>
         <div className={styles.bombmap}>
           {userInputs.map((row, y) =>
-            row.map((x, i) => (
-              <div
-                style={{ backgroundPosition: `${-30 * (x - 1)}px , 0px ` }}
-                className={styles.cellstyle}
-                key={`${i}-${y}`}
-                onClick={() => clickHandler(y, i)}
-              />
-            )),
+            row.map((x, i) =>
+              x === 0 ? (
+                <div className={styles.block} />
+              ) : (
+                <div
+                  onClick={() => {
+                    console.log('Div clicked', y, i);
+                    clickHandler(y, i);
+                  }}
+                  style={{ backgroundPosition: `${-30 * (x - 1)}px , 0px ` }}
+                  className={styles.cellstyle}
+                  key={`${i}-${y}`}
+                />
+              ),
+            ),
           )}
         </div>
-        {/* <div
-          className={styles.samplestyle}
-
-        /> */}
-        {/* <button onClick={() => setSamplepos(1)} /> */}
+        {/* <div className={styles.samplestyle} />
+        <button onClick={() => setSamplepos(1)} /> */}
       </div>
     </div>
   );
