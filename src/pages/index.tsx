@@ -88,7 +88,11 @@ const Home = () => {
           {userInputs.map((row, y) =>
             row.map((x, i) =>
               x === 0 ? (
-                <div className={styles.block} />
+                <div
+                  className={styles.block}
+                  key={`${i}-${y}`}
+                  onClick={() => clickHandler(y, i)}
+                />
               ) : (
                 <div
                   onClick={() => {
