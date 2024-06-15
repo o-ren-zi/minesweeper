@@ -50,14 +50,12 @@ const Home = () => {
   ]);
 
   const clickHandler = (x: number, y: number) => {
-    //console.log(x, y);
     const newBombmap = structuredClone(bombMap);
-
+    //bombのランダム生成
     const getRandom = () => {
       const board: number[][] = structuredClone(userInputs);
 
       while (board.flat().filter((cell) => cell === 11).length < 10) {
-        //11の数が１０未満のとき
         const randomX = Math.floor(Math.random() * 9);
         const randomY = Math.floor(Math.random() * 9);
 
@@ -70,9 +68,22 @@ const Home = () => {
       return board;
     };
 
+    const countBomb = () => {
+      let i = 0;
+      for (let y = 0; y < 9; y++) {
+        for (let x = 0; x < 9; x++) {
+          if (bombMap[y][x] === 1) {
+            i += 1;
+          }
+        }
+      }
+      return i;
+    };
+
     setUserInputs(getRandom);
 
     console.log(getRandom);
+    countBomb();
   };
 
   // console.table(board);
@@ -85,15 +96,16 @@ const Home = () => {
           <div className={styles.timeboard} />
         </div>
         <div className={styles.bombmap}>
-          {userInputs.map((row, y) =>
-            row.map((x, i) =>
-              x === 0 ? (
-                <div
-                  className={styles.block}
-                  key={`${i}-${y}`}
-                  onClick={() => clickHandler(y, i)}
-                />
-              ) : (
+          {userInputs.map(
+            (row, y) =>
+              row.map((x, i) => (
+                // x === 0 ? (
+                //   <div
+                //     className={styles.block}
+                //     key={`${i}-${y}`}
+                //     onClick={() => clickHandler(y, i)}
+                //   />
+                // ) : (
                 <div
                   onClick={() => {
                     console.log('Div clicked', y, i);
@@ -103,8 +115,8 @@ const Home = () => {
                   className={styles.cellstyle}
                   key={`${i}-${y}`}
                 />
-              ),
-            ),
+              )),
+            //),
           )}
         </div>
         {/* <div className={styles.samplestyle} />
