@@ -13,7 +13,7 @@ const directions = [
 
 const Home = () => {
   const [samplePos, setSamplepos] = useState(0);
-  const [bombMap, setBombmap] = useState([
+  const [bombMap, setBombMap] = useState([
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -37,20 +37,7 @@ const Home = () => {
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
   ]);
 
-  const [number, setNumber] = useState([
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  ]);
-
   const clickHandler = (x: number, y: number) => {
-    const newBombmap = structuredClone(bombMap);
     //bombのランダム生成
     const getRandom = () => {
       const board: number[][] = structuredClone(userInputs);
@@ -63,27 +50,37 @@ const Home = () => {
           board[randomY][randomX] = 11;
           console.log('set', randomX, randomY);
         }
-        console.log(randomX, randomY);
       }
       return board;
     };
-
-    const countBomb = () => {
-      let i = 0;
-      for (let y = 0; y < 9; y++) {
-        for (let x = 0; x < 9; x++) {
-          if (bombMap[y][x] === 1) {
-            i += 1;
-          }
-        }
-      }
-      return i;
-    };
-
     setUserInputs(getRandom);
 
     console.log(getRandom);
-    countBomb();
+
+    const newBombMap = structuredClone(bombMap);
+    const bombSet = getRandom(newBombMap);
+
+    console.log(bombSet);
+    let i = 0;
+    for (let y = 0; y < 9; y++) {
+      for (let x = 0; x < 9; x++) {
+        i += 1;
+        if (bombSet[y][x] === 11) continue;
+        let bombCount = 0;
+        for (const [dx, dy] of directions) {
+          const nx = dx + x;
+          const ny = dy + y;
+          if (0 > nx || nx > 8 || 0 > ny || ny > 8) continue;
+          if (bombSet[ny][nx] === 11) {
+            bombCount += 1;
+          }
+        }
+        bombSet[y][x] = bombCount;
+      }
+    }
+    console.log(i);
+    setBombMap(bombSet);
+    //bombSet[y][x] = userInputs[y][x];
   };
 
   // console.table(board);
